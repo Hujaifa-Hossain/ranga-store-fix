@@ -1,3 +1,4 @@
+// fetching api
 const loadProducts = () => {
   const url = `https://fakestoreapi.com/products`;
   fetch(url)
@@ -36,6 +37,7 @@ const addToCart = (id, price) => {
   updateTotal();
 };
 
+// input value update function
 const getInputValue = (id) => {
   const element = document.getElementById(id).innerText;
   const converted = parseFloat(element);
@@ -58,6 +60,10 @@ const setInnerText = (id, value) => {
 // update delivery charge and total Tax
 const updateTaxAndCharge = () => {
   const priceConverted = getInputValue("price");
+  if (priceConverted < 200) {
+    setInnerText("delivery-charge", 20);
+    setInnerText("total-tax", priceConverted * 0.1);
+  }
   if (priceConverted > 200) {
     setInnerText("delivery-charge", 30);
     setInnerText("total-tax", priceConverted * 0.2);
